@@ -6,7 +6,7 @@ const Contact = () => {
     return (
         <div className=" mt-28" style={{ backgroundImage: `url(${bg})` }}>
             <form className=" flex justify-center p-5 ">
-                <div className='w-1/3  mt-5'>
+                <div className='lg:w-1/3  mt-5'>
                     <div className="">
                         <input type="text" placeholder="Email Address" className="input input-bordered text-black w-full" />
                     </div>
