@@ -7,7 +7,7 @@ const Appointment = () => {
     return (
         <div className="hero mt-72 "  style={{ backgroundImage: `url(${bg})` }}>
             <div className="hero-content flex-col md:flex-row ">
-                <div className='lg:w-1/2 mt-[-200px] hidden md:block'>
+                <div className='lg:w-1/2 mt-[-200px] pb-0 hidden md:block'>
                     <img src={doctor} alt='' className="rounded-lg" />
                 </div>
                 <div className='lg:ml-10 lg:w-1/2'>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../Hooks/useToken';
 import { AuthContext } from '../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
@@ -8,6 +9,13 @@ const Register = () => {
     const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signUpError, setSignUpError] = useState('');
+    const [createdUserEmail,setCreatedUserEmail]=useState('')
+    const [token]=useToken(createdUserEmail); 
+
+    if(token){
+        navigate('/')
+    }
+
     const handleRegister = data => {
         createUser(data.email, data.password)
             .then(result => {
@@ -19,7 +27,8 @@ const Register = () => {
                 console.log(userInfo)
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/')
+                        saveUser(data.name, data.email)
+                        
                     })
                     .catch(error => {
                         console.log(error)
@@ -36,11 +45,33 @@ const Register = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
+                console.log(user.name)
                 console.log(user)
+                saveUser(user.displayName, user.email)
                 alert('user update successfully')
                 navigate('/')
             })
             .catch(error => console.error(error))
+    }
+
+
+    const saveUser=(name, email)=>{
+        const user={name, email}
+        console.log(user)
+        fetch(`http://localhost:5000/users`, {
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            setCreatedUserEmail(email)
+            console.log(data)
+
+        })
+        
     }
     return (
         <div className='h-[800px] flex justify-center items-center rounded-xl'>
