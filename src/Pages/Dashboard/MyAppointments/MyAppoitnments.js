@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const MyAppointments = () => {
 
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`
+  const url = `https://doctors-portal-server-ruby-one.vercel.app/bookings?email=${user?.email}`
 
   const { data: bookings = [] } = useQuery({
     queryKey: ['bookings', user?.email],
@@ -16,6 +17,7 @@ const MyAppointments = () => {
         }
       })
       const data = await res.json()
+      console.log(data)
       return data
     }
   })
@@ -26,21 +28,33 @@ const MyAppointments = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Treatment</th>
-              <th>Date</th>
-              <th>Time</th>
+              <th className='bg-white text-black'></th>
+              <th className='bg-white text-black'>Name</th>
+              <th className='bg-white text-black'>Treatment</th>
+              <th className='bg-white text-black'>Date</th>
+              <th className='bg-white text-black'>Time</th>
+              <th className='bg-white text-black'>Payment</th>
             </tr>
           </thead>
           <tbody>
             {
               bookings.map((book, i) => <tr key={book._id}>
-                <th>{i + 1}</th>
-                <td>{book?.patient}</td>
-                <td>{book.treatment}</td>
-                <td>{book.selectedDate}</td>
-                <td>{book.slot}</td>
+                <th className='bg-white text-black'>{i + 1}</th>
+                <td className='bg-white text-black'>{book?.patient}</td>
+                <td className='bg-white text-black'>{book?.treatment}</td>
+                <td className='bg-white text-black'>{book?.selectedDate}</td>
+                <td className='bg-white text-black'>{book?.slot}</td>
+                
+                <td>
+                  {
+                    book.price && !book.paid &&
+                    <td className='bg-white text-black'><Link to={`/dashboard/payment/${book?._id}`}><button className='btn btn-sm btn-primary'>Pay</button></Link></td>
+                  }
+                   {
+                    book?.price && book?.paid &&
+                    <td className='bg-white text-black'><button className='btn btn-sm btn-primary'>Paid</button></td>
+                  }
+                </td>
               </tr>)
             }
           </tbody>

@@ -33,7 +33,7 @@ const AddDoctor = () => {
                 img: imgURL
             }
 
-            fetch('http://localhost:5000/dashboard/adddoctor',{
+            fetch('https://doctors-portal-server-ruby-one.vercel.app/dashboard/adddoctor',{
                 method:"POST",
                 headers: {
                     'content-type': 'application/json',
@@ -58,7 +58,7 @@ const AddDoctor = () => {
     const {data:appoinmentspeciality=[]} = useQuery({
         queryKey: ['appoinmentspeciality'],
         queryFn:async()=>{
-            const res=await fetch('http://localhost:5000/appoinmentspeciality');
+            const res=await fetch('https://doctors-portal-server-ruby-one.vercel.app/appoinmentspeciality');
             const data= await res.json();
             return data
         }

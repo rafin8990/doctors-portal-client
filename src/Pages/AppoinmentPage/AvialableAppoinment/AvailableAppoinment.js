@@ -13,7 +13,7 @@ const AvailableAppoinment = ({ selectedDate }) => {
     const { data: services = [], refetch, isLoading } = useQuery({
         queryKey: ['services', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appoinmentoption?date=${date}`);
+            const res = await fetch(`https://doctors-portal-server-ruby-one.vercel.app/appoinmentoption?date=${date}`);
             const data = await res.json();
             return data
         }
@@ -24,7 +24,7 @@ const AvailableAppoinment = ({ selectedDate }) => {
     }
 
     // useEffect(()=>{
-    //     fetch('http://localhost:5000/appoinmentoption')
+    //     fetch('https://doctors-portal-server-ruby-one.vercel.app/appoinmentoption')
     //     .then(res=>res.json())
     //     .then(data=>setServices(data))
     // }, [])

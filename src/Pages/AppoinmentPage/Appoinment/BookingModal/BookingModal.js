@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
     const {user}=useContext(AuthContext)
-    const { name: treatmentName, slots } = treatment;
+    const { name: treatmentName, slots, price } = treatment;
     const date = format(selectedDate, 'PP')
     const handleModal = (event) => {
         event.preventDefault()
@@ -12,7 +12,8 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
-        const slot = form.slot.value
+        const slot = form.slot.value;
+        
 
         const booking = {
             selectedDate: date,
@@ -20,9 +21,10 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
             treatment: treatmentName,
             email,
             phone,
-            slot
+            slot,
+            price:price
         }
-        fetch(`http://localhost:5000/bookings`, {
+        fetch(`https://doctors-portal-server-ruby-one.vercel.app/bookings`, {
             method: "POST",
             headers:{
                 'content-type' : 'application/json'
@@ -63,6 +65,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
                         </select>
                         <input type="text" defaultValue={user?.displayName} disabled name='name' placeholder="Full Name" className="input input-bordered w-full " />
                         <input type="text" defaultValue={user?.email} disabled name='email' placeholder="Email" className="input input-bordered w-full " />
+                        <input type="text" defaultValue={price} disabled name='price' placeholder="price" className="input input-bordered w-full " />
                         <input type="text" name='phone' placeholder="Phone Number" className="input input-bordered w-full " />
                         <button type='submit' className='btn bg-[#3A4256]'>Submit</button>
                     </form>

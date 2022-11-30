@@ -5,7 +5,7 @@ import CustomButton from '../../../CustomButton/CustomButton';
 
 const Banner = () => {
     return (
-        <div className='py-52' style={{ backgroundImage: `url(${bg})` }}>
+        <div className='lg:pb-20' style={{ backgroundImage: `url(${bg})` }}>
             <div  className={`hero`}>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <img src={banner} alt='' className="md:w-1/2 rounded-lg shadow-2xl" />

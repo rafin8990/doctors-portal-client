@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Appoinment from "../AppoinmentPage/Appoinment/Appoinment";
 import MyAppointments from "../Dashboard/MyAppointments/MyAppoitnments";
+import Payment from "../Dashboard/Payment";
 import Home from "../HomePage/Home/Home";
 import AddDoctor from "../Layouts/DashBoard/AddDoctor";
 import AllUsers from "../Layouts/DashBoard/AllUsers";
@@ -9,6 +10,7 @@ import ManageDoctors from "../Layouts/DashBoard/ManageDoctors";
 import Main from "../Layouts/Main/Main";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import ErrorElements from "../Shered/ErrorElements";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
@@ -16,6 +18,7 @@ export const router = createBrowserRouter([
     {
         path:'/',
         element: <Main></Main>,
+        errorElement:<ErrorElements></ErrorElements>,
         children:([
             {
                 path:'/',
@@ -38,6 +41,7 @@ export const router = createBrowserRouter([
     {
        path: '/dashboard',
        element:<DashBoardLayout></DashBoardLayout>,
+       errorElement:<ErrorElements></ErrorElements>,
        children:[
         {
             path:'/dashboard',
@@ -54,6 +58,11 @@ export const router = createBrowserRouter([
         {
             path:'/dashboard/managedoctor',
             element:<AdminRoute><ManageDoctors></ManageDoctors></AdminRoute>
+        },
+        {
+            path:'/dashboard/payment/:id',
+            element:<Payment></Payment>,
+            loader:({params})=>fetch(`https://doctors-portal-server-ruby-one.vercel.app/bookings/${params.id}`)
         },
        ]
     }
