@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 
 const CheakoutForm = ({ booking }) => {
+    const { price, email, patient, _id } = booking
 
     const [cardError, setCardError] = useState('')
     const [success, setSuccess] = useState('');
@@ -12,7 +13,6 @@ const CheakoutForm = ({ booking }) => {
     const stripe = useStripe();
     const elements = useCartElementState();
 
-    const { price, email, patient, _id } = booking
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
