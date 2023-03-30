@@ -9,6 +9,7 @@ const AvailableAppoinment = ({ selectedDate }) => {
     // const [services, setServices]=useState([]);
     const [treatment, setTreatment] = useState(null);
     const date = format(selectedDate, 'PP')
+    console.log(date)
 
     const { data: services = [], refetch, isLoading } = useQuery({
         queryKey: ['services', date],

@@ -18,7 +18,8 @@
       "3.30 PM - 4.00 PM",
       "4.00 PM - 4.30 PM",
       "4.30 PM - 5.00 PM"
-    ]
+    ],
+    "price":"99"
   },
   {
     "name": "Cosmetic Dentistry",
@@ -39,7 +40,8 @@
       "3.30 PM - 4.00 PM",
       "4.00 PM - 4.30 PM",
       "4.30 PM - 5.00 PM"
-    ]
+    ],
+    "price":"99"
   },
   {
     "name": "Teeth Cleaning",
@@ -60,7 +62,8 @@
       "3.30 PM - 4.00 PM",
       "4.00 PM - 4.30 PM",
       "4.30 PM - 5.00 PM"
-    ]
+    ],
+    "price":"99"
   },
   {
     "name": "Cavity Protection",
@@ -81,7 +84,8 @@
       "3.30 PM - 4.00 PM",
       "4.00 PM - 4.30 PM",
       "4.30 PM - 5.00 PM"
-    ]
+    ],
+    "price":"99"
   },
   {
     "name": "Pediatric Dental",
@@ -102,7 +106,8 @@
       "3.30 PM - 4.00 PM",
       "4.00 PM - 4.30 PM",
       "4.30 PM - 5.00 PM"
-    ]
+    ],
+    "price":"99"
   },
   {
     "name": "Oral Surgery",
@@ -123,6 +128,7 @@
       "3.30 PM - 4.00 PM",
       "4.00 PM - 4.30 PM",
       "4.30 PM - 5.00 PM"
-    ]
+    ],
+    "price":"99"
   }
 ]
