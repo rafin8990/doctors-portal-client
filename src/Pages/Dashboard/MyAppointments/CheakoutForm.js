@@ -1,9 +1,11 @@
 import { CardElement, useCartElementState, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheakoutForm = ({ booking }) => {
     const { price, email, patient, _id } = booking
+    const navigate=useNavigate()
 
     const [cardError, setCardError] = useState('')
     const [success, setSuccess] = useState('');
@@ -94,6 +96,7 @@ const CheakoutForm = ({ booking }) => {
                     if (data.insertedId) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
+                        navigate('/dashboard')
                     }
                 })
         }
